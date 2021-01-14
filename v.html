@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>推流测试</title>
+ </head>
+ <!--
+ 测试代码
+ -->
+ <body>
+  <object wmode="transparent" id="rtmp-streamer" type="application/x-shockwave-flash" data="https://imgcache.qq.com/open/qcloud/video/act/live_web_push/RtmpStreamer.swf"; width="500" height="450" style="border: 1px solid #333;">
+   <param value="always" name="allowScriptAccess" />
+   <param value="https://imgcache.qq.com/open/qcloud/video/act/live_web_push/RtmpStreamer.swf"; name="movie" />
+   <param value="high" name="quality" />
+  </object>
+
+  <button id="push">开始推流</button>
+
+  <script type="text/javascript">
+   document.getElementById('push').onclick = function() {
+    var elem = document.getElementById('rtmp-streamer');
+    console.log(elem.publish);
+    // 直播地址
+    var rtmp = 'rtmp://70026.livepush.myqcloud.com/live/10000'
+    let urls = rtmp.split('/');
+    let name = urls.pop();
+    let url = urls.join("/");
+    // flash 的推流方法publish
+    elem.publish(url, name);
+   };
+  </script>
+ </body>
+</html>
